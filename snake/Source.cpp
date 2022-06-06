@@ -29,12 +29,7 @@ void DrawSnake()
     }
 }
 
-void Move() {
-    for (int i = num; i > 0; --i)
-    {
-        snake[i].SetX(snake[i - 1].GetX());
-        snake[i].SetY(snake[i - 1].GetY());
-    }
+void EasyMove() {
 
     // движение вверх
     if (dir == 0) {
@@ -57,44 +52,7 @@ void Move() {
     }
 }
 
-void Tick()
-{
-    for (int i = num; i > 0; --i)
-    {
-        snake[i].SetX(snake[i - 1].GetX());
-        snake[i].SetY(snake[i - 1].GetY());
-    }
-
-    // движение вверх
-    if (dir == 0) {
-        snake[0].SetY(snake[0].GetY() + 1);
-    }
-
-    //движение влево
-    else if (dir == 1) {
-        snake[0].SetX(snake[0].GetX() - 1);
-    }
-
-    //движение вправо
-    else if (dir == 2) {
-        snake[0].SetX(snake[0].GetX() + 1);
-    }
-
-    //движение вниз
-    else if (dir == 3) {
-        snake[0].SetY(snake[0].GetY() - 1);
-    }
-
-    //едим фрукт
-    for (int i = 0; i < 10; i++) {
-        if ((snake[0].GetX() == fruits[i].x) && (snake[0].GetY() == fruits[i].y))
-        {
-            num++; 
-            fruits[i].New(width, height, Scale);
-        }
-    }
-
-    /*//если за границы справа - идем влево
+void HardMove() {
     if (s[0].GetX() > width - 1) {
         dir = 1;
     }
@@ -112,7 +70,27 @@ void Tick()
     //если за границы снизу - идем вверх
     else if (s[0].GetY() <= 0) {
         dir = 0;
-    }*/
+    }
+}
+
+void Tick()
+{
+    for (int i = num; i > 0; --i)
+    {
+        snake[i].SetX(snake[i - 1].GetX());
+        snake[i].SetY(snake[i - 1].GetY());
+    }
+
+    EasyMove();
+
+    //едим фрукт
+    for (int i = 0; i < 10; i++) {
+        if ((snake[0].GetX() == fruits[i].x) && (snake[0].GetY() == fruits[i].y))
+        {
+            num++; 
+            fruits[i].New(width, height, Scale);
+        }
+    }
 
     //если за границы справа - идем из левого
     if (snake[0].GetX() > width - 1) {
@@ -182,21 +160,16 @@ void KeyboardEvent(int key, int a, int b)
     case 100:
         dir = 1;
         break;
-    case 101: 	
-        dir = 0; 
+    case 101:
+        dir = 0;
         break;
-    case 102:  
-        dir = 2; 
+    case 102:
+        dir = 2;
         break;
-    case 103:  
-        dir = 3; 
+    case 103:
+        dir = 3;
         break;
     }
-}
-
-void StartGame() {
-
-
 }
 
 void timer(int = 0)
