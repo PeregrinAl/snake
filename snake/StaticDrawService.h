@@ -7,7 +7,7 @@ static class StaticDrawService
 public:
     static void DrawField(int width, int height, int cellSize)
     {
-        glColor3f(0.7, 0.7, 0.8); // Грид
+        glColor3f(0.7, 0.7, 0.9);
         glBegin(GL_LINES);
         for (int i = 0; i < width; i += cellSize)
         {
