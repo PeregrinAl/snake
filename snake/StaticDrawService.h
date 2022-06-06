@@ -1,6 +1,8 @@
 #pragma once
 #include  <GL/glut.h>
-static class DrawService
+#include "Snake.h"
+
+static class StaticDrawService
 {
 public:
     static void DrawField(int width, int height, int cellSize)
