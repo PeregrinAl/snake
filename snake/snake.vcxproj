@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DrawService.cpp" />
     <ClCompile Include="Fruits.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="PointSnake.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrawService.h" />
     <ClInclude Include="Fruits.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="PointSnake.h" />

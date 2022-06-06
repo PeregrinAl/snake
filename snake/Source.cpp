@@ -4,6 +4,8 @@
 #include "Fruits.h"
 #include "PointSnake.h"
 #include "Snake.h"
+#include "Game.h"
+#include "DrawService.h"
 
 const int width = 30;
 const int height = 20;
@@ -119,29 +121,10 @@ void Tick()
     }
 }
 
-
-
-void DrawField()
-{
-    glColor3f(0.7, 0.7, 0.8); // Грид
-    glBegin(GL_LINES);
-    for (int i = 0; i < w; i += Scale)
-    {
-        glVertex2f(i, 0); glVertex2f(i, h);
-    }
-    for (int j = 0; j < h; j += Scale)
-    {
-        glVertex2f(0, j); glVertex2f(w, j);
-    }
-    glEnd();
-}
-
-
 void display() {
 
     glClear(GL_COLOR_BUFFER_BIT);
-
-    DrawField();
+    DrawService::DrawField(w, h, Scale);
 
     DrawSnake();
 
@@ -184,17 +167,17 @@ int main(int argc, char** argv) {
 
     srand(time(0));
 
+
     for (int i = 0; i < 10;i++) {
         fruits[i].New(width, height, Scale);
-
         snake[i].SetX(10);
         snake[i].SetY(10);
     }
-
+    
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(w, h);
-    glutCreateWindow("Test");
+    glutCreateWindow("RelaxSnake");
     glClearColor(0.8, 0.8, 1.0, 1.0);  //цвет фона
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
