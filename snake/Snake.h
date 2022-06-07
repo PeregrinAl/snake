@@ -24,6 +24,30 @@ public:
 		return body[i];
 	}
 
+	void MoveBody(int curLength, int dir) {
+		for (int i = curLength; i > 0; --i)
+		{
+			body[i].SetX(body[i - 1].GetX());
+			body[i].SetY(body[i - 1].GetY());
+		}
+		MoveHead(dir);
+	}
+
+	int NewLenght(int curLength) {
+		for (int i = 1; i < curLength; i++) {
+			if (body[0].GetX() == body[i].GetX() && body[0].GetY() == body[i].GetY()) {
+				return i;
+			}
+		}
+		return curLength;
+	}
+
+private:
+	PointSnake snakeHead;
+	bool isAlive = true;
+	PointSnake* body = new PointSnake;
+	int currentLength = 0;
+
 	void MoveHead(int direction) {
 		// движение вверх
 		if (direction == 0) {
@@ -45,28 +69,5 @@ public:
 			body[0].SetY(body[0].GetY() - 1);
 		}
 	}
-
-	void MoveBody(int curLength, int dir) {
-		for (int i = curLength; i > 0; --i)
-		{
-			body[i].SetX(body[i - 1].GetX());
-			body[i].SetY(body[i - 1].GetY());
-		}
-		MoveHead(dir);
-	}
-
-	int CheckDamage(int curLength) {
-		for (int i = 1; i < curLength; i++) {
-			if (body[0].GetX() == body[i].GetX() && body[0].GetY() == body[i].GetY()) {
-				return i;
-			}
-		}
-		return curLength;
-	}
-
-private:
-	PointSnake snakeHead;
-	bool isAlive = true;
-	PointSnake* body = new PointSnake;
 };
 

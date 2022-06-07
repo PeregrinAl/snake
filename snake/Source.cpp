@@ -26,6 +26,12 @@ PointSnake snakeHead = s[0];
 Snake snake(100);
 Fruits fruits[10];
 
+const int unsigned DIRECTION_LEFT = 1;
+const int unsigned DIRECTION_RIGHT = 2;
+const int unsigned DIRECTION_DOWN = 3;
+const int unsigned DIRECTION_UP = 4;
+
+
 #pragma endregion
 
 #pragma region game methods
@@ -74,22 +80,22 @@ void EasyMove() {
 void HardMove() {
     //если заходим за границы справа - идем налево
     if (snake[0].GetX() > cellsHorizontalCount - 1) {
-        dir = 1;
+        dir = DIRECTION_LEFT;
     }
 
     //если заходим за границы слева - идем вправо
     else if (snake[0].GetX() < 0) {
-        dir = 2;
+        dir = DIRECTION_RIGHT;
     }
 
     //если заходим за границы сверху - идем вниз
     else if (snake[0].GetY() > cellsVerticalCount - 1) {
-        dir = 3;
+        dir = DIRECTION_DOWN;
     }
 
     //если заходим за границы снизу - идем вверх
     else if (snake[0].GetY() < 0) {
-        dir = 0;
+        dir = DIRECTION_UP;
     }
 }
 
@@ -111,7 +117,7 @@ void Tick()
     }
 
     EasyMove();
-    currentLength = snake.CheckDamage(currentLength);
+    currentLength = snake.NewLenght(currentLength);
 }
 
 void display() {
