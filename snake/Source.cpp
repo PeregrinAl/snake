@@ -51,29 +51,6 @@ void DrawSnake()
         (snake.Head().GetY() + 0.9) * cellSize);
 }
 
-/*void EasyMove() {
-    //если заходим за границы справа - идем слева
-    if (snake[0].GetX() > cellsHorizontalCount - 1) {
-        snake[0].SetX(0);
-    }
-
-    //если заходим за границы слева - идем справа
-    else if (snake[0].GetX() < 0) {
-        snake[0].SetX(cellsHorizontalCount);
-    }
-
-    //если заходим за границы сверху - идем снизу
-    else if (snake[0].GetY() > cellsVerticalCount - 1) {
-        snake[0].SetY(0);
-    }
-
-    //если заходим за границы снизу - идем сверху
-    else if (snake[0].GetY() < 0) {
-        snake[0].SetY(cellsVerticalCount);
-    }
-    
-}*/
-
 /*void HardMove() {
     //если заходим за границы справа - идем налево
     if (snake[0].GetX() > cellsHorizontalCount - 1) {
@@ -102,18 +79,17 @@ void DrawSnake()
 
 void Tick()
 {
-    snake.MoveBody(currentLength, direction);
+    snake.MoveBody(currentLength, direction, cellsHorizontalCount, cellsVerticalCount);
 
     //едим фрукт
     for (int i = 0; i < 10; i++) {
-        if ((snake[0].GetX() == fruits[i].x) && (snake[0].GetY() == fruits[i].y))
+        if ((snake.Head().GetX() == fruits[i].x) && (snake.Head().GetY() == fruits[i].y))
         {
             currentLength++;
             fruits[i].New(cellsHorizontalCount, cellsVerticalCount, cellSize);
         }
     }
 
-    snake.Move(cellsHorizontalCount, cellsVerticalCount);
     currentLength = snake.NewLenght(currentLength);
 }
 
