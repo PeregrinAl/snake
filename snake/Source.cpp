@@ -4,7 +4,6 @@
 #include "Fruits.h"
 #include "PointSnake.h"
 #include "Snake.h"
-#include "Game.h"
 #include "StaticDrawService.h"
 #include "PointSnake.h"
 
@@ -18,7 +17,6 @@ int unsigned windowWidth = cellSize * cellsHorizontalCount;
 int unsigned windowHeight = cellSize * cellsVerticalCount;
 
 int unsigned direction;
-int unsigned currentLength = 4;
 
 PointSnake s[cellsHorizontalCount * cellsVerticalCount];
 Snake snake(100);
@@ -36,7 +34,7 @@ const int unsigned DIRECTION_DOWN = 3;
 void DrawSnake()
 {
     glColor3f(0.4, 0.4, 0.8);
-    for (int i = 0; i < currentLength; i++)
+    for (int i = 0; i < snake.currentLength; i++)
     {
         glRectf(snake.body[i].GetX() * cellSize,
             snake.body[i].GetY() * cellSize,
@@ -79,18 +77,20 @@ void DrawSnake()
 
 void Tick()
 {
-    snake.MoveBody(currentLength, direction, cellsHorizontalCount, cellsVerticalCount);
+    snake.MoveBody(direction, cellsHorizontalCount, cellsVerticalCount);
 
     //едим фрукт
     for (int i = 0; i < 10; i++) {
         if ((snake.Head().GetX() == fruits[i].x) && (snake.Head().GetY() == fruits[i].y))
         {
-            currentLength++;
-            fruits[i].New(cellsHorizontalCount, cellsVerticalCount, cellSize);
+            snake.currentLength++;
+            for (int j = 0; j < snake.currentLength; j++) {
+                while (snake.body[j].GetX() == fruits[i].x && snake.body[j].GetY() == fruits[i].y) {
+                    fruits[i].New(cellsHorizontalCount, cellsVerticalCount);
+                }
+            }
         }
     }
-
-    currentLength = snake.NewLenght(currentLength);
 }
 
 void display() {
@@ -140,9 +140,7 @@ int main(int argc, char** argv) {
     srand(time(0));
 
     for (int i = 0; i < 10; i++) {
-        fruits[i].New(cellsHorizontalCount, cellsVerticalCount, cellSize);
-        snake[i].SetX(10);
-        snake[i].SetY(10);
+        fruits[i].New(cellsHorizontalCount, cellsVerticalCount);
     }
     
     glutInit(&argc, argv);

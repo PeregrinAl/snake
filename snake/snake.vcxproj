@@ -141,7 +141,6 @@
   <ItemGroup>
     <ClCompile Include="StaticDrawService.cpp" />
     <ClCompile Include="Fruits.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="PointSnake.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -149,7 +148,6 @@
   <ItemGroup>
     <ClInclude Include="StaticDrawService.h" />
     <ClInclude Include="Fruits.h" />
-    <ClInclude Include="Game.h" />
     <ClInclude Include="PointSnake.h" />
     <ClInclude Include="Snake.h" />
   </ItemGroup>

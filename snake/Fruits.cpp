@@ -1,9 +1,9 @@
 #include "Fruits.h"
 
-void Fruits::New(int N, int M, int scale)
+void Fruits::New(int cellsHorizontalCount, int cellsVerticalCount)
 {
-	x = rand() % N;
-	y = rand() % M;
+	x = rand() % cellsHorizontalCount;
+	y = rand() % cellsVerticalCount;
 }
 
 void Fruits::DrawApple(int scale)

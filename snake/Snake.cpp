@@ -2,7 +2,7 @@
 
 Snake::Snake()
 {
-	snakeHead = PointSnake(0, 0);
+	snakeHead = PointSnake(10, 10);
 }
 
 Snake::~Snake()
@@ -13,6 +13,7 @@ Snake::~Snake()
 Snake::Snake(const int length)
 {
 	this->body = new PointSnake[length];
+	this->body[0] = PointSnake(10, 10);
 	this->snakeHead = body[0];
 }
 
@@ -26,9 +27,9 @@ PointSnake& Snake::operator[](int i)
 	return body[i];
 }
 
-void Snake::MoveBody(int curLength, int direction, int cellsHorizontalCount, int cellsVerticalCount)
+void Snake::MoveBody(int direction, int cellsHorizontalCount, int cellsVerticalCount)
 {
-	for (int i = curLength; i > 0; --i)
+	for (int i = currentLength; i > 0; --i)
 	{
 		body[i].SetX(body[i - 1].GetX());
 		body[i].SetY(body[i - 1].GetY());
@@ -36,16 +37,14 @@ void Snake::MoveBody(int curLength, int direction, int cellsHorizontalCount, int
 	MoveHead(direction, cellsHorizontalCount, cellsVerticalCount);
 }
 
-int Snake::NewLenght(int curLength)
+void Snake::NewLenght()
 {
-	for (int i = 1; i < curLength; i++) {
+	for (int i = 1; i < currentLength; i++) {
 		if (body[0].GetX() == body[i].GetX() && body[0].GetY() == body[i].GetY()) {
-			return i;
+			currentLength = i;
 		}
 	}
-	return curLength;
 }
-
 
 void Snake::MoveHead(int direction, int cellsHorizontalCount, int cellsVerticalCount)
 {
@@ -88,4 +87,5 @@ void Snake::MoveHead(int direction, int cellsHorizontalCount, int cellsVerticalC
 			body[0].SetY(body[0].GetY() - 1);
 		}
 	}
+	NewLenght();
 }

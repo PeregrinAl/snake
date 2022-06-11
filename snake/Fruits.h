@@ -8,7 +8,7 @@ class Fruits
 public:
     int x;
     int y;
-    void New(int N, int M, int scale);
+    void New(int cellsHorizontalCount, int cellsVerticalCount);
     void DrawApple(int scale);
 };
 
