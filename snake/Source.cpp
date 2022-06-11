@@ -6,7 +6,6 @@
 #include "Snake.h"
 #include "Game.h"
 #include "StaticDrawService.h"
-#include "Snake.cpp"
 #include "PointSnake.h"
 
 #pragma region variables
@@ -18,19 +17,17 @@ const int cellSize = 30;
 int unsigned windowWidth = cellSize * cellsHorizontalCount;
 int unsigned windowHeight = cellSize * cellsVerticalCount;
 
-int unsigned dir;
+int unsigned direction;
 int unsigned currentLength = 4;
 
 PointSnake s[cellsHorizontalCount * cellsVerticalCount];
-PointSnake snakeHead = s[0];
 Snake snake(100);
 Fruits fruits[10];
 
+const int unsigned DIRECTION_UP = 0;
 const int unsigned DIRECTION_LEFT = 1;
 const int unsigned DIRECTION_RIGHT = 2;
 const int unsigned DIRECTION_DOWN = 3;
-const int unsigned DIRECTION_UP = 4;
-
 
 #pragma endregion
 
@@ -41,20 +38,20 @@ void DrawSnake()
     glColor3f(0.4, 0.4, 0.8);
     for (int i = 0; i < currentLength; i++)
     {
-        glRectf(snake[i].GetX() * cellSize,
-            snake[i].GetY() * cellSize,
-            (snake[i].GetX() + 0.9) * cellSize,
-            (snake[i].GetY() + 0.9) * cellSize);
+        glRectf(snake.body[i].GetX() * cellSize,
+            snake.body[i].GetY() * cellSize,
+            (snake.body[i].GetX() + 0.9) * cellSize,
+            (snake.body[i].GetY() + 0.9) * cellSize);
     }
     glColor3f(0.3, 0.3, 0.7);
 
-    glRectf(snake[0].GetX() * cellSize,
-        snake[0].GetY() * cellSize,
-        (snake[0].GetX() + 0.9) * cellSize,
-        (snake[0].GetY() + 0.9) * cellSize);
+    glRectf(snake.Head().GetX() * cellSize,
+        snake.Head().GetY() * cellSize,
+        (snake.Head().GetX() + 0.9) * cellSize,
+        (snake.Head().GetY() + 0.9) * cellSize);
 }
 
-void EasyMove() {
+/*void EasyMove() {
     //если заходим за границы справа - идем слева
     if (snake[0].GetX() > cellsHorizontalCount - 1) {
         snake[0].SetX(0);
@@ -75,29 +72,29 @@ void EasyMove() {
         snake[0].SetY(cellsVerticalCount);
     }
     
-}
+}*/
 
-void HardMove() {
+/*void HardMove() {
     //если заходим за границы справа - идем налево
     if (snake[0].GetX() > cellsHorizontalCount - 1) {
-        dir = DIRECTION_LEFT;
+        direction = DIRECTION_LEFT;
     }
 
     //если заходим за границы слева - идем вправо
     else if (snake[0].GetX() < 0) {
-        dir = DIRECTION_RIGHT;
+        direction = DIRECTION_RIGHT;
     }
 
     //если заходим за границы сверху - идем вниз
     else if (snake[0].GetY() > cellsVerticalCount - 1) {
-        dir = DIRECTION_DOWN;
+        direction = DIRECTION_DOWN;
     }
 
     //если заходим за границы снизу - идем вверх
     else if (snake[0].GetY() < 0) {
-        dir = DIRECTION_UP;
+        direction = DIRECTION_UP;
     }
-}
+}*/
 
 #pragma endregion
 
@@ -105,7 +102,7 @@ void HardMove() {
 
 void Tick()
 {
-    snake.MoveBody(currentLength, dir);
+    snake.MoveBody(currentLength, direction);
 
     //едим фрукт
     for (int i = 0; i < 10; i++) {
@@ -116,7 +113,7 @@ void Tick()
         }
     }
 
-    EasyMove();
+    snake.Move(cellsHorizontalCount, cellsVerticalCount);
     currentLength = snake.NewLenght(currentLength);
 }
 
@@ -138,17 +135,17 @@ void KeyboardEvent(int key, int a, int b)
 {
     switch (key)
     {
-    case 100:
-        dir = 1;
+    case GLUT_KEY_LEFT:
+        direction = DIRECTION_LEFT;
         break;
-    case 101:
-        dir = 0;
+    case GLUT_KEY_UP:
+        direction = DIRECTION_UP;
         break;
-    case 102:
-        dir = 2;
+    case GLUT_KEY_RIGHT:
+        direction = DIRECTION_RIGHT;
         break;
-    case 103:
-        dir = 3;
+    case GLUT_KEY_DOWN:
+        direction = DIRECTION_DOWN;
         break;
     }
 }
