@@ -1,0 +1,116 @@
+\hypertarget{class_snake}{}\doxysection{Класс Snake}
+\label{class_snake}\index{Snake@{Snake}}
+
+
+A class that generates the \mbox{\hyperlink{class_snake}{Snake}} object.  
+
+
+
+
+{\ttfamily \#include $<$Snake.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_snake_aa9cbcdb4b25d84cbf83509039cac8d01}{Snake}} ()
+\item 
+\mbox{\hyperlink{class_snake_a941fbaad96ee33ca3a7c30c28ca44ef8}{$\sim$\+Snake}} ()
+\item 
+\mbox{\hyperlink{class_snake_ae5385a19f98145d3a5ae9c0c8d3367f4}{Snake}} (const int length)
+\item 
+\mbox{\hyperlink{class_point_snake}{Point\+Snake}} \mbox{\hyperlink{class_snake_a6f602b89dc8aa35b4104bfbfad27aae4}{head}} ()
+\item 
+\mbox{\hyperlink{class_point_snake}{Point\+Snake}} \& \mbox{\hyperlink{class_snake_a7a443a1dcced326f12ded16351a6351a}{operator\mbox{[}$\,$\mbox{]}}} (int i)
+\item 
+void \mbox{\hyperlink{class_snake_ab029b18f9ac6f7d34fdcd25e167639e0}{move\+Body}} (int dir, int cells\+Horizontal\+Count, int cells\+Vertical\+Count)
+\item 
+void \mbox{\hyperlink{class_snake_af9bbea0a30aca4a6590e703821c68e38}{new\+Lenght}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_snake_a24e799d9a634917d3ba7375e1139fb6b}\label{class_snake_a24e799d9a634917d3ba7375e1139fb6b}} 
+\mbox{\hyperlink{class_point_snake}{Point\+Snake}} $\ast$ {\bfseries body} = new \mbox{\hyperlink{class_point_snake}{Point\+Snake}}
+\begin{DoxyCompactList}\small\item\em Pointer to an array containing the body of the snake. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_a3e25ca4497691240b8c308d2d54409f9}\label{class_snake_a3e25ca4497691240b8c308d2d54409f9}} 
+int {\bfseries current\+Length} = 4
+\begin{DoxyCompactList}\small\item\em Current length of the snake. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+A class that generates the \mbox{\hyperlink{class_snake}{Snake}} object. 
+
+The class is designed to store the body of the snake and manage it 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{class_snake_aa9cbcdb4b25d84cbf83509039cac8d01}\label{class_snake_aa9cbcdb4b25d84cbf83509039cac8d01}} 
+\index{Snake@{Snake}!Snake@{Snake}}
+\index{Snake@{Snake}!Snake@{Snake}}
+\doxysubsubsection{\texorpdfstring{Snake()}{Snake()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Snake\+::\+Snake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Base constructor that sets x and y coordinates of the Head by default \mbox{\Hypertarget{class_snake_a941fbaad96ee33ca3a7c30c28ca44ef8}\label{class_snake_a941fbaad96ee33ca3a7c30c28ca44ef8}} 
+\index{Snake@{Snake}!````~Snake@{$\sim$Snake}}
+\index{````~Snake@{$\sim$Snake}!Snake@{Snake}}
+\doxysubsubsection{\texorpdfstring{$\sim$Snake()}{~Snake()}}
+{\footnotesize\ttfamily Snake\+::$\sim$\+Snake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Base destuctor that clears memor \mbox{\Hypertarget{class_snake_ae5385a19f98145d3a5ae9c0c8d3367f4}\label{class_snake_ae5385a19f98145d3a5ae9c0c8d3367f4}} 
+\index{Snake@{Snake}!Snake@{Snake}}
+\index{Snake@{Snake}!Snake@{Snake}}
+\doxysubsubsection{\texorpdfstring{Snake()}{Snake()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Snake\+::\+Snake (\begin{DoxyParamCaption}\item[{const int}]{length }\end{DoxyParamCaption})}
+
+Constructor that gets the length of the snake and creates \mbox{\hyperlink{class_point_snake}{Point\+Snake}} array 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{class_snake_a6f602b89dc8aa35b4104bfbfad27aae4}\label{class_snake_a6f602b89dc8aa35b4104bfbfad27aae4}} 
+\index{Snake@{Snake}!head@{head}}
+\index{head@{head}!Snake@{Snake}}
+\doxysubsubsection{\texorpdfstring{head()}{head()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_point_snake}{Point\+Snake}} Snake\+::head (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A function that allows you to get the head of the snake \begin{DoxyReturn}{Возвращает}
+\mbox{\hyperlink{class_point_snake}{Point\+Snake}} object, which is the head of the snake 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_snake_ab029b18f9ac6f7d34fdcd25e167639e0}\label{class_snake_ab029b18f9ac6f7d34fdcd25e167639e0}} 
+\index{Snake@{Snake}!moveBody@{moveBody}}
+\index{moveBody@{moveBody}!Snake@{Snake}}
+\doxysubsubsection{\texorpdfstring{moveBody()}{moveBody()}}
+{\footnotesize\ttfamily void Snake\+::move\+Body (\begin{DoxyParamCaption}\item[{int}]{dir,  }\item[{int}]{cells\+Horizontal\+Count,  }\item[{int}]{cells\+Vertical\+Count }\end{DoxyParamCaption})}
+
+Function used to move the snake in a given direction 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em dir} & direction of movement \\
+\hline
+\mbox{\texttt{ in}}  & {\em cells\+Horizontal\+Count} & number of cells horizontally \\
+\hline
+\mbox{\texttt{ in}}  & {\em cells\+Vertical\+Count} & number of cells vertically \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_snake_af9bbea0a30aca4a6590e703821c68e38}\label{class_snake_af9bbea0a30aca4a6590e703821c68e38}} 
+\index{Snake@{Snake}!newLenght@{newLenght}}
+\index{newLenght@{newLenght}!Snake@{Snake}}
+\doxysubsubsection{\texorpdfstring{newLenght()}{newLenght()}}
+{\footnotesize\ttfamily void Snake\+::new\+Lenght (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Function that changes the length of the snake \mbox{\Hypertarget{class_snake_a7a443a1dcced326f12ded16351a6351a}\label{class_snake_a7a443a1dcced326f12ded16351a6351a}} 
+\index{Snake@{Snake}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Snake@{Snake}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_point_snake}{Point\+Snake}} \& Snake\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+Redefining the \mbox{[}\mbox{]} operator, allowing you to get the snake point by referring to the index 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em i} & index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\mbox{\hyperlink{class_point_snake}{Point\+Snake}} value 
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_snake_8h}{Snake.\+h}}\item 
+Snake.\+cpp\end{DoxyCompactItemize}

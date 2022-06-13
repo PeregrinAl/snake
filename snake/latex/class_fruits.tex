@@ -1,0 +1,65 @@
+\hypertarget{class_fruits}{}\doxysection{Класс Fruits}
+\label{class_fruits}\index{Fruits@{Fruits}}
+
+
+A class that generates the fruit objects.  
+
+
+
+
+{\ttfamily \#include $<$Fruits.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_fruits_a62a0ccf08ddee4884d6901880bc281f5}{new\+Fruit}} (int cells\+Horizontal\+Count, int cells\+Vertical\+Count)
+\item 
+void \mbox{\hyperlink{class_fruits_ab434d13881df6a60707361ea1714ab0e}{draw\+Fruit}} (int scale)
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_fruits_a70925b4aec8a4444b00cbfd6313ceb6f}\label{class_fruits_a70925b4aec8a4444b00cbfd6313ceb6f}} 
+int {\bfseries y}
+\begin{DoxyCompactList}\small\item\em Y coordinate of the current fruit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_fruits_a05092c6d114ec7a7ca80333a98ac7779}\label{class_fruits_a05092c6d114ec7a7ca80333a98ac7779}} 
+int {\bfseries x}
+\begin{DoxyCompactList}\small\item\em X coordinate of the current fruit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+A class that generates the fruit objects. 
+
+The class is necessary to form a fruit that has its own coordinates and methods 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{class_fruits_ab434d13881df6a60707361ea1714ab0e}\label{class_fruits_ab434d13881df6a60707361ea1714ab0e}} 
+\index{Fruits@{Fruits}!drawFruit@{drawFruit}}
+\index{drawFruit@{drawFruit}!Fruits@{Fruits}}
+\doxysubsubsection{\texorpdfstring{drawFruit()}{drawFruit()}}
+{\footnotesize\ttfamily void Fruits\+::draw\+Fruit (\begin{DoxyParamCaption}\item[{int}]{scale }\end{DoxyParamCaption})}
+
+Function for drawing fruit on the screen 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em scale} & the size of the cell in which the fruit will be drawn \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_fruits_a62a0ccf08ddee4884d6901880bc281f5}\label{class_fruits_a62a0ccf08ddee4884d6901880bc281f5}} 
+\index{Fruits@{Fruits}!newFruit@{newFruit}}
+\index{newFruit@{newFruit}!Fruits@{Fruits}}
+\doxysubsubsection{\texorpdfstring{newFruit()}{newFruit()}}
+{\footnotesize\ttfamily void Fruits\+::new\+Fruit (\begin{DoxyParamCaption}\item[{int}]{cells\+Horizontal\+Count,  }\item[{int}]{cells\+Vertical\+Count }\end{DoxyParamCaption})}
+
+Function to generate new fruit coordinates 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em cells\+Horizontal\+Count} & number of cells horizontally \\
+\hline
+\mbox{\texttt{ in}}  & {\em cells\+Vertical\+Count} & number of cells vertically \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_fruits_8h}{Fruits.\+h}}\item 
+Fruits.\+cpp\end{DoxyCompactItemize}

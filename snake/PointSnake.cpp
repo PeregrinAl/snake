@@ -12,22 +12,22 @@ PointSnake::PointSnake(int x, int y)
 	this->yCoordinate = y;
 }
 
-int PointSnake::GetX()
+int PointSnake::getX()
 {
 	return xCoordinate;
 }
 
-int PointSnake::GetY()
+int PointSnake::getY()
 {
 	return yCoordinate;
 }
 
-void PointSnake::SetX(int x)
+void PointSnake::setX(int x)
 {
 	xCoordinate = x;
 }
 
-void PointSnake::SetY(int y)
+void PointSnake::setY(int y)
 {
 	yCoordinate = y;
 }

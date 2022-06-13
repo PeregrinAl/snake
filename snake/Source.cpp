@@ -13,8 +13,8 @@ const int cellsHorizontalCount = 30;
 const int cellsVerticalCount = 20;
 const int cellSize = 30;
 
-int unsigned windowWidth = cellSize * cellsHorizontalCount;
-int unsigned windowHeight = cellSize * cellsVerticalCount;
+const int unsigned windowWidth = cellSize * cellsHorizontalCount;
+const int unsigned windowHeight = cellSize * cellsVerticalCount;
 
 int unsigned direction;
 
@@ -22,92 +22,69 @@ PointSnake s[cellsHorizontalCount * cellsVerticalCount];
 Snake snake(100);
 Fruits fruits[10];
 
-const int unsigned DIRECTION_UP = 0;
-const int unsigned DIRECTION_LEFT = 1;
-const int unsigned DIRECTION_RIGHT = 2;
-const int unsigned DIRECTION_DOWN = 3;
-
 #pragma endregion
 
 #pragma region game methods
 
-void DrawSnake()
-{
+void drawSnake()
+    {
     glColor3f(0.4, 0.4, 0.8);
     for (int i = 0; i < snake.currentLength; i++)
-    {
-        glRectf(snake.body[i].GetX() * cellSize,
-            snake.body[i].GetY() * cellSize,
-            (snake.body[i].GetX() + 0.9) * cellSize,
-            (snake.body[i].GetY() + 0.9) * cellSize);
-    }
+        {
+        glRectf(snake.body[i].getX() * cellSize,
+            snake.body[i].getY() * cellSize,
+            (snake.body[i].getX() + 0.9) * cellSize,
+            (snake.body[i].getY() + 0.9) * cellSize);
+        }
     glColor3f(0.3, 0.3, 0.7);
 
-    glRectf(snake.Head().GetX() * cellSize,
-        snake.Head().GetY() * cellSize,
-        (snake.Head().GetX() + 0.9) * cellSize,
-        (snake.Head().GetY() + 0.9) * cellSize);
-}
-
-/*void HardMove() {
-    //если заходим за границы справа - идем налево
-    if (snake[0].GetX() > cellsHorizontalCount - 1) {
-        direction = DIRECTION_LEFT;
+    glRectf(snake.head().getX() * cellSize,
+        snake.head().getY() * cellSize,
+        (snake.head().getX() + 0.9) * cellSize,
+        (snake.head().getY() + 0.9) * cellSize);
     }
-
-    //если заходим за границы слева - идем вправо
-    else if (snake[0].GetX() < 0) {
-        direction = DIRECTION_RIGHT;
-    }
-
-    //если заходим за границы сверху - идем вниз
-    else if (snake[0].GetY() > cellsVerticalCount - 1) {
-        direction = DIRECTION_DOWN;
-    }
-
-    //если заходим за границы снизу - идем вверх
-    else if (snake[0].GetY() < 0) {
-        direction = DIRECTION_UP;
-    }
-}*/
-
 #pragma endregion
 
 #pragma region base methods opengl
 
-void Tick()
-{
-    snake.MoveBody(direction, cellsHorizontalCount, cellsVerticalCount);
+void tick()
+    {
+    snake.moveBody(direction, cellsHorizontalCount, cellsVerticalCount);
 
     //едим фрукт
-    for (int i = 0; i < 10; i++) {
-        if ((snake.Head().GetX() == fruits[i].x) && (snake.Head().GetY() == fruits[i].y))
+    for (int i = 0; i < 10; i++) 
         {
+        if ((snake.head().getX() == fruits[i].x) && (snake.head().getY() == fruits[i].y))
+            {
             snake.currentLength++;
-            for (int j = 0; j < snake.currentLength; j++) {
-                while (snake.body[j].GetX() == fruits[i].x && snake.body[j].GetY() == fruits[i].y) {
-                    fruits[i].New(cellsHorizontalCount, cellsVerticalCount);
+            for (int j = 0; j < snake.currentLength; j++) 
+                {
+                while (snake.body[j].getX() == fruits[i].x && snake.body[j].getY() == fruits[i].y) 
+                    {
+                    fruits[i].newFruit(cellsHorizontalCount, cellsVerticalCount);
+                    }
                 }
             }
         }
     }
-}
 
-void display() {
+void display() 
+    {
 
     glClear(GL_COLOR_BUFFER_BIT);
     StaticDrawService::DrawField(windowWidth, windowHeight, cellSize);
-    DrawSnake();
+    drawSnake();
 
-    for (int i = 0; i < 10; i++) {
-        fruits[i].DrawApple(cellSize);
-    }
+    for (int i = 0; i < 10; i++) 
+        {
+        fruits[i].drawFruit(cellSize);
+        }
 
     glFlush();
     glutSwapBuffers();
-}
+    }
 
-void KeyboardEvent(int key, int a, int b)
+void keyboardEvent(int key, int a, int b)
 {
     switch (key)
     {
@@ -127,21 +104,23 @@ void KeyboardEvent(int key, int a, int b)
 }
 
 void timer(int = 0)
-{
+    {
     display();
-    Tick();
+    tick();
     glutTimerFunc(50, timer, 0);
-}
+    }
 
 #pragma endregion
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+    {
 
     srand(time(0));
 
-    for (int i = 0; i < 10; i++) {
-        fruits[i].New(cellsHorizontalCount, cellsVerticalCount);
-    }
+    for (int i = 0; i < 10; i++) 
+        {
+        fruits[i].newFruit(cellsHorizontalCount, cellsVerticalCount);
+        }
     
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
@@ -153,8 +132,8 @@ int main(int argc, char** argv) {
     gluOrtho2D(0, windowWidth, 0, windowHeight);
 
     glutDisplayFunc(display);
-    glutSpecialFunc(KeyboardEvent);
+    glutSpecialFunc(keyboardEvent);
     glutTimerFunc(50, timer, 0);
 
     glutMainLoop();
-}
+    }
