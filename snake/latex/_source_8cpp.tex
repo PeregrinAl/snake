@@ -1,0 +1,92 @@
+\hypertarget{_source_8cpp}{}\doxysection{Файл Source.\+cpp}
+\label{_source_8cpp}\index{Source.cpp@{Source.cpp}}
+
+
+The file contains an entry point and some methods needed to update the screen, draw elements, and track keystrokes.  
+
+
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$GL/glut.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Fruits.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Point\+Snake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Snake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Static\+Draw\+Service.\+h\char`\"{}}\newline
+\doxysubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_source_8cpp_a4f4cdc5a6b882a5f3d7776e40a2fa505}{draw\+Snake}} ()
+\item 
+void \mbox{\hyperlink{_source_8cpp_a873dd91783f9efb4a590aded1f70d6b0}{tick}} ()
+\item 
+void \mbox{\hyperlink{_source_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269}{display}} ()
+\item 
+\mbox{\Hypertarget{_source_8cpp_a3f4471cddf3f2956aa595383509d0200}\label{_source_8cpp_a3f4471cddf3f2956aa595383509d0200}} 
+void {\bfseries keyboard\+Event} (int key, int x, int y)
+\item 
+\mbox{\Hypertarget{_source_8cpp_a9a7441676bd0286080b8b965e0a89784}\label{_source_8cpp_a9a7441676bd0286080b8b965e0a89784}} 
+void {\bfseries timer} (int=0)
+\item 
+\mbox{\Hypertarget{_source_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{_source_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+int {\bfseries main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_source_8cpp_afd541b0de9c5cd75fb7c61b79fd7388a}\label{_source_8cpp_afd541b0de9c5cd75fb7c61b79fd7388a}} 
+const int {\bfseries cells\+Horizontal\+Count} = 30
+\begin{DoxyCompactList}\small\item\em number of cells horizontally \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_source_8cpp_a7a328138bc163141e9a08b2db1bca768}\label{_source_8cpp_a7a328138bc163141e9a08b2db1bca768}} 
+const int {\bfseries cells\+Vertical\+Count} = 20
+\begin{DoxyCompactList}\small\item\em number of cells vertically \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_source_8cpp_a1b2bd631375119ff2c305d7d2ba77ed8}\label{_source_8cpp_a1b2bd631375119ff2c305d7d2ba77ed8}} 
+const int {\bfseries cell\+Size} = 30
+\begin{DoxyCompactList}\small\item\em size of the cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_source_8cpp_a3cde6e241a32d1934730880b443168e3}\label{_source_8cpp_a3cde6e241a32d1934730880b443168e3}} 
+const int unsigned {\bfseries window\+Width} = \mbox{\hyperlink{_source_8cpp_a1b2bd631375119ff2c305d7d2ba77ed8}{cell\+Size}} $\ast$ \mbox{\hyperlink{_source_8cpp_afd541b0de9c5cd75fb7c61b79fd7388a}{cells\+Horizontal\+Count}}
+\begin{DoxyCompactList}\small\item\em window width \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_source_8cpp_a6dce9bf100f64ce85068dcfdc99e0d2d}\label{_source_8cpp_a6dce9bf100f64ce85068dcfdc99e0d2d}} 
+const int unsigned {\bfseries window\+Heigth} = \mbox{\hyperlink{_source_8cpp_a1b2bd631375119ff2c305d7d2ba77ed8}{cell\+Size}} $\ast$ \mbox{\hyperlink{_source_8cpp_a7a328138bc163141e9a08b2db1bca768}{cells\+Vertical\+Count}}
+\begin{DoxyCompactList}\small\item\em window heigth \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_source_8cpp_a52b2132cd4d7de99e1108cb1e85c746f}\label{_source_8cpp_a52b2132cd4d7de99e1108cb1e85c746f}} 
+const int {\bfseries fruits\+Count} = 600
+\begin{DoxyCompactList}\small\item\em size of the cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_source_8cpp_a7f6d7fee5583f918516dd36bf2ef4bc2}\label{_source_8cpp_a7f6d7fee5583f918516dd36bf2ef4bc2}} 
+int unsigned {\bfseries direction}
+\begin{DoxyCompactList}\small\item\em direction of movement \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_source_8cpp_a9078d077f94a0e8f71ec446abe515d4f}\label{_source_8cpp_a9078d077f94a0e8f71ec446abe515d4f}} 
+const int {\bfseries MAX\+\_\+\+LENGTH} = \mbox{\hyperlink{_source_8cpp_afd541b0de9c5cd75fb7c61b79fd7388a}{cells\+Horizontal\+Count}} $\ast$ \mbox{\hyperlink{_source_8cpp_a7a328138bc163141e9a08b2db1bca768}{cells\+Vertical\+Count}}
+\item 
+\mbox{\Hypertarget{_source_8cpp_a019a76a0650bba7ccf3ce191f6553f23}\label{_source_8cpp_a019a76a0650bba7ccf3ce191f6553f23}} 
+\mbox{\hyperlink{class_snake}{Snake}} {\bfseries snake} (MAX\+\_\+\+LENGTH)
+\begin{DoxyCompactList}\small\item\em snake object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_source_8cpp_a0617dcca6a1c49857e9a0d7e88f29c30}\label{_source_8cpp_a0617dcca6a1c49857e9a0d7e88f29c30}} 
+\mbox{\hyperlink{class_fruits}{Fruits}} {\bfseries fruits} \mbox{[}\mbox{\hyperlink{_source_8cpp_a52b2132cd4d7de99e1108cb1e85c746f}{fruits\+Count}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em fruits array \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+The file contains an entry point and some methods needed to update the screen, draw elements, and track keystrokes. 
+
+
+
+\doxysubsection{Функции}
+\mbox{\Hypertarget{_source_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269}\label{_source_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269}} 
+\index{Source.cpp@{Source.cpp}!display@{display}}
+\index{display@{display}!Source.cpp@{Source.cpp}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method that draws graphics on the screen \mbox{\Hypertarget{_source_8cpp_a4f4cdc5a6b882a5f3d7776e40a2fa505}\label{_source_8cpp_a4f4cdc5a6b882a5f3d7776e40a2fa505}} 
+\index{Source.cpp@{Source.cpp}!drawSnake@{drawSnake}}
+\index{drawSnake@{drawSnake}!Source.cpp@{Source.cpp}}
+\doxysubsubsection{\texorpdfstring{drawSnake()}{drawSnake()}}
+{\footnotesize\ttfamily void draw\+Snake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_snake}{Snake}} drawing method \mbox{\Hypertarget{_source_8cpp_a873dd91783f9efb4a590aded1f70d6b0}\label{_source_8cpp_a873dd91783f9efb4a590aded1f70d6b0}} 
+\index{Source.cpp@{Source.cpp}!tick@{tick}}
+\index{tick@{tick}!Source.cpp@{Source.cpp}}
+\doxysubsubsection{\texorpdfstring{tick()}{tick()}}
+{\footnotesize\ttfamily void tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method describing what happens every time the screen is refreshed 

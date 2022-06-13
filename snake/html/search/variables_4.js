@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_0',['y',['../class_fruits.html#a70925b4aec8a4444b00cbfd6313ceb6f',1,'Fruits']]]
+  ['snake_0',['snake',['../_source_8cpp.html#a019a76a0650bba7ccf3ce191f6553f23',1,'Source.cpp']]]
 ];

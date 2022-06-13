@@ -10,6 +10,7 @@
 \file
 \brief The file contains an entry point and some methods needed to update the screen, draw elements, and track keystrokes.
 */
+
 #pragma region variables
 
 const int cellsHorizontalCount = 30; ///< number of cells horizontally
@@ -19,7 +20,7 @@ const int cellSize = 30; ///< size of the cell
 const int unsigned windowWidth = cellSize * cellsHorizontalCount; ///< window width
 const int unsigned windowHeigth = cellSize * cellsVerticalCount; ///< window heigth
 
-const int fruitsCount = 20; ///< size of the cell
+const int fruitsCount = 10; ///< size of the cell
 
 int unsigned direction; ///< direction of movement
 
@@ -56,11 +57,13 @@ void drawSnake()
 
 #pragma region base methods opengl
 
+/*!
+This method describing what happens every time the screen is refreshed
+*/
 void tick()
     {
     snake.moveBody(direction, cellsHorizontalCount, cellsVerticalCount);
 
-    //едим фрукт
     for (int i = 0; i < fruitsCount; i++) 
         {
         if ((snake.head().getX() == fruits[i].x) && (snake.head().getY() == fruits[i].y))
@@ -77,6 +80,9 @@ void tick()
         }
     }
 
+/*!
+Method that draws graphics on the screen
+*/
 void display() 
     {
 
@@ -93,7 +99,13 @@ void display()
     glutSwapBuffers();
     }
 
-void keyboardEvent(int key, int a, int b)
+/*
+Method that captures keystrokes
+param[in] key ASCII code of the pressed key
+param[in] provide the position of the mouse cursor when a key is pressed, relative to the upper left corner of the window's client area
+param[in] provide the position of the mouse cursor when a key is pressed, relative to the upper left corner of the window's client area
+*/
+void keyboardEvent(int key, int x, int y)
 {
     switch (key)
     {
@@ -112,6 +124,9 @@ void keyboardEvent(int key, int a, int b)
     }
 }
 
+/*
+Method that sets the timer for glutTimerFunc
+*/
 void timer(int = 0)
     {
     display();
@@ -121,6 +136,9 @@ void timer(int = 0)
 
 #pragma endregion
 
+/*
+Point of entry
+*/
 int main(int argc, char** argv) 
     {
 
