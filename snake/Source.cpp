@@ -6,42 +6,51 @@
 #include "Snake.h"
 #include "StaticDrawService.h"
 #include "PointSnake.h"
-
+/*!
+\file
+\brief The file contains an entry point and some methods needed to update the screen, draw elements, and track keystrokes.
+*/
 #pragma region variables
 
-const int cellsHorizontalCount = 30;
-const int cellsVerticalCount = 20;
-const int cellSize = 30;
+const int cellsHorizontalCount = 30; ///< number of cells horizontally
+const int cellsVerticalCount = 20; ///< number of cells vertically
+const int cellSize = 30; ///< size of the cell
 
-const int unsigned windowWidth = cellSize * cellsHorizontalCount;
-const int unsigned windowHeight = cellSize * cellsVerticalCount;
+const int unsigned windowWidth = cellSize * cellsHorizontalCount; ///< window width
+const int unsigned windowHeigth = cellSize * cellsVerticalCount; ///< window heigth
 
-int unsigned direction;
+const int fruitsCount = 20; ///< size of the cell
 
-PointSnake s[cellsHorizontalCount * cellsVerticalCount];
-Snake snake(100);
-Fruits fruits[10];
+int unsigned direction; ///< direction of movement
+
+const int MAX_LENGTH = cellsHorizontalCount * cellsVerticalCount;
+Snake snake(MAX_LENGTH); ///< snake object
+Fruits fruits[fruitsCount]; ///< fruits array
 
 #pragma endregion
 
 #pragma region game methods
 
+/*!
+Snake drawing method
+*/
 void drawSnake()
     {
+    double indent = 0.9;
     glColor3f(0.4, 0.4, 0.8);
     for (int i = 0; i < snake.currentLength; i++)
         {
         glRectf(snake.body[i].getX() * cellSize,
             snake.body[i].getY() * cellSize,
-            (snake.body[i].getX() + 0.9) * cellSize,
-            (snake.body[i].getY() + 0.9) * cellSize);
+            (snake.body[i].getX() + indent) * cellSize,
+            (snake.body[i].getY() + indent) * cellSize);
         }
     glColor3f(0.3, 0.3, 0.7);
 
     glRectf(snake.head().getX() * cellSize,
         snake.head().getY() * cellSize,
-        (snake.head().getX() + 0.9) * cellSize,
-        (snake.head().getY() + 0.9) * cellSize);
+        (snake.head().getX() + indent) * cellSize,
+        (snake.head().getY() + indent) * cellSize);
     }
 #pragma endregion
 
@@ -52,7 +61,7 @@ void tick()
     snake.moveBody(direction, cellsHorizontalCount, cellsVerticalCount);
 
     //едим фрукт
-    for (int i = 0; i < 10; i++) 
+    for (int i = 0; i < fruitsCount; i++) 
         {
         if ((snake.head().getX() == fruits[i].x) && (snake.head().getY() == fruits[i].y))
             {
@@ -72,10 +81,10 @@ void display()
     {
 
     glClear(GL_COLOR_BUFFER_BIT);
-    StaticDrawService::DrawField(windowWidth, windowHeight, cellSize);
+    StaticDrawService::DrawField(windowWidth, windowHeigth, cellSize);
     drawSnake();
 
-    for (int i = 0; i < 10; i++) 
+    for (int i = 0; i < fruitsCount; i++)
         {
         fruits[i].drawFruit(cellSize);
         }
@@ -117,19 +126,25 @@ int main(int argc, char** argv)
 
     srand(time(0));
 
-    for (int i = 0; i < 10; i++) 
+    for (int i = 0; i < fruitsCount; i++)
+    {
+        for (int j = 0; j < snake.currentLength; j++)
         {
-        fruits[i].newFruit(cellsHorizontalCount, cellsVerticalCount);
+            while (snake.body[j].getX() == fruits[i].x && snake.body[j].getY() == fruits[i].y)
+            {
+                fruits[i].newFruit(cellsHorizontalCount, cellsVerticalCount);
+            }
         }
+    }
     
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize(windowWidth, windowHeight);
+    glutInitWindowSize(windowWidth, windowHeigth);
     glutCreateWindow("RelaxSnake");
     glClearColor(0.8, 0.8, 1.0, 1.0);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0, windowWidth, 0, windowHeight);
+    gluOrtho2D(0, windowWidth, 0, windowHeigth);
 
     glutDisplayFunc(display);
     glutSpecialFunc(keyboardEvent);
