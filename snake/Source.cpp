@@ -141,7 +141,6 @@ Point of entry
 */
 int main(int argc, char** argv) 
     {
-
     srand(time(0));
 
     for (int i = 0; i < fruitsCount; i++)
